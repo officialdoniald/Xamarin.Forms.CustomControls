@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customControlMaster:CustomMasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinForms.CustomControls.Views.CustomMasterDetailPageExample"
+             xmlns:customControlMaster="clr-namespace:XamarinForms.CustomControls.MasterDetailPage"
+             xmlns:customControlNavigation="clr-namespace:XamarinForms.CustomControls.NavigationPage"
+             xmlns:local1="clr-namespace:XamarinForms.CustomControls">
+    <customControlMaster:CustomMasterDetailPage.Master>
+        <ContentPage Title="Master">
+            <ContentPage.Content>
+                <StackLayout>
+                    <ListView x:Name="listView" x:FieldModifier="public">
+                        <ListView.ItemsSource>
+                            <x:Array Type="{x:Type customControlMaster:MasterPageItem}">
+                                <customControlMaster:MasterPageItem Title="Contacts" IconSource="contacts.png" TargetType="{x:Type local1:MainPage}" />
+                                <customControlMaster:MasterPageItem Title="TodoList" IconSource="todo.png" TargetType="{x:Type local1:MainPage}" />
+                                <customControlMaster:MasterPageItem Title="Reminders" IconSource="reminders.png" TargetType="{x:Type local1:MainPage}" />
+                            </x:Array>
+                        </ListView.ItemsSource>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="5,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding IconSource}" />
+                                        <Label Grid.Column="1" Text="{Binding Title}" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </customControlMaster:CustomMasterDetailPage.Master>
+    <customControlMaster:CustomMasterDetailPage.Detail>
+        <customControlNavigation:CustomNavigationPage
+            TitleFontAttributes="Bold"
+            TitleFontSize="30"
+            TitleHorizontalAlignment="Center"
+            TitleFontFamily="HelveticaNeueLTStd">
+            <x:Arguments>
+                <local1:MainPage Title="Menu1"/>
+            </x:Arguments>
+        </customControlNavigation:CustomNavigationPage>
+    </customControlMaster:CustomMasterDetailPage.Detail>
+</customControlMaster:CustomMasterDetailPage>
